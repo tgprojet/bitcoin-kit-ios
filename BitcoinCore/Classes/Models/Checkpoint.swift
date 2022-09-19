@@ -16,11 +16,12 @@ public struct Checkpoint {
         debugPrint("CHECKPOINT VALUES");
         debugPrint(bundleName);
         debugPrint(podBundle);
+        debugPrint(filename);
         guard let checkpointsBundle = Bundle(url: checkpointsBundleURL) else {
-            throw ParseError.invalidBundle
+          //  throw ParseError.invalidBundle
         }
         guard let fileURL = checkpointsBundle.url(forResource: filename, withExtension: "checkpoint") else {
-            throw ParseError.invalidFileUrl
+          //  throw ParseError.invalidFileUrl
         }
 
         let string = try String(contentsOf: fileURL, encoding: .utf8)
