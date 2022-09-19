@@ -13,10 +13,10 @@ public struct Checkpoint {
         guard let checkpointsBundleURL = podBundle.url(forResource: bundleName, withExtension: "bundle") else {
             throw ParseError.invalidBundleUrl
         }
-        debugPrint("CHECKPOINT VALUES");
-        debugPrint(bundleName);
-        debugPrint(podBundle);
-        debugPrint(filename);
+        print("CHECKPOINT VALUES");
+        print(bundleName);
+        print(podBundle);
+        print(filename);
         guard let checkpointsBundle = Bundle(url: checkpointsBundleURL) else {
             throw ParseError.invalidBundle
         }
