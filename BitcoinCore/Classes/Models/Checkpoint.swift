@@ -21,7 +21,7 @@ public struct Checkpoint {
             throw ParseError.invalidBundle
         }
         guard let fileURL = checkpointsBundle.url(forResource: filename, withExtension: "checkpoint") else {
-            throw "Some Error" + String(describing:podBundle) + bundleName + filename
+            throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
            // throw ParseError.invalidFileUrl
         }
 
