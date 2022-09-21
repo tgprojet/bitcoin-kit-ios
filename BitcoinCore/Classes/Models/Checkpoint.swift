@@ -14,30 +14,29 @@ struct RuntimeError: Error {
 public struct Checkpoint {
     public let block: Block
     public let additionalBlocks: [Block]
-
+    public static let CheckpointConstants = ["BitcoinKit_MainNet-last":"0000a020c53598bd71e3a1277ffe6fe664ad25fcbdd799698728050000000000000000000d4ae8ee20c30b1b7abb8b5b299771ce78b376c7f976ad5b2c2c6b607e4078a79297d962042a0a170ebda527c0610b001a441fa6520761f4a35768dbdbffa3acadf84870ae150a000000000000000000",
+                                             "BitcoinKit_MainNet-bip44":"02000000ba3f2b4208ec0495b2e3743465cae2b44d8f1c778b44cf6b0000000000000000d287e52e8045c060c1cee47d1cc7559c7b8ab8db580539fb55fc579a998ea14efe0e50538c9d001926c0c180a08504003f72e59e0db5b38e5210369dc2fb4831ab1e81f3b5dbec3d0000000000000000"]
     public init(block: Block, additionalBlocks: [Block]) {
         self.block = block
         self.additionalBlocks = additionalBlocks
     }
 
     public init(podBundle: Bundle, bundleName: String, filename: String) throws {
-        guard let checkpointsBundleURL = podBundle.url(forResource: bundleName, withExtension: "bundle") else {
-            throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
+        //guard let checkpointsBundleURL = podBundle.url(forResource: bundleName, withExtension: "bundle") else {
+        //    throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
             //throw ParseError.invalidBundleUrl
-        }
-        print("CHECKPOINT VALUES");
-        print(bundleName);
-        print(podBundle);
-        print(filename);
-        guard let checkpointsBundle = Bundle(url: checkpointsBundleURL) else {
-            throw ParseError.invalidBundle
-        }
-        guard let fileURL = checkpointsBundle.url(forResource: filename, withExtension: "checkpoint") else {
-            throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
+       // }
+      //  guard let checkpointsBundle = Bundle(url: checkpointsBundleURL) else {
+        //    throw ParseError.invalidBundle
+       // }
+       // guard let fileURL = checkpointsBundle.url(forResource: filename, withExtension: "checkpoint") else {
+        //    throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
            // throw ParseError.invalidFileUrl
-        }
-
-        let string = try String(contentsOf: fileURL, encoding: .utf8)
+        //}
+        let bundleKey = bundleName + "_" + filename
+        let string = Checkpoint.CheckpointConstants[bundleKey]
+ 
+        //let string = try String(contentsOf: fileURL, encoding: .utf8)
         var lines = string.components(separatedBy: .newlines).filter { !$0.isEmpty }
 
         guard !lines.isEmpty else {
