@@ -22,7 +22,8 @@ public struct Checkpoint {
 
     public init(podBundle: Bundle, bundleName: String, filename: String) throws {
         guard let checkpointsBundleURL = podBundle.url(forResource: bundleName, withExtension: "bundle") else {
-            throw ParseError.invalidBundleUrl
+            throw RuntimeError("Some Error" + String(describing:podBundle) + bundleName + filename)
+            //throw ParseError.invalidBundleUrl
         }
         print("CHECKPOINT VALUES");
         print(bundleName);
