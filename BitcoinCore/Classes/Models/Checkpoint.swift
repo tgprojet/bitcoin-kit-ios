@@ -34,7 +34,7 @@ public struct Checkpoint {
            // throw ParseError.invalidFileUrl
         //}
         let bundleKey = bundleName + "_" + filename
-        let string = Checkpoint.CheckpointConstants[bundleKey]
+        let string = Checkpoint.CheckpointConstants[bundleKey]!
  
         //let string = try String(contentsOf: fileURL, encoding: .utf8)
         var lines = string.components(separatedBy: .newlines).filter { !$0.isEmpty }
